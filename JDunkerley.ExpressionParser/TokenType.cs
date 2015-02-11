@@ -28,7 +28,7 @@ namespace JDunkerley.ExpressionParser
         /// </summary>
         Operator,
         /// <summary>
-        /// Identifier (Keyword, Variable, Function)
+        /// Identifier (Keyword, Variable, Function, Constant)
         /// </summary>
         Identifier
     }

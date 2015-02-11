@@ -13,8 +13,10 @@ namespace JDunkerley.ExpressionParser.Test
         public void TestCreate_StringLiteral()
         {
             var token = TokenType.StringLiteral.Create("Test");
-            Assert.IsNotNull(token);
-            Assert.IsInstanceOfType(token, typeof(Token));
+            Assert.IsNotNull(token, "Token should not be null");
+            Assert.IsInstanceOfType(token, typeof(IToken), "Token should be an IToken");
+            Assert.AreEqual("Test", token.Text, "Text should be set to original value");
+            Assert.AreEqual(TokenType.StringLiteral, token.TokenType, "TokenType should be set to StringLiteral");
         }
     }
 }

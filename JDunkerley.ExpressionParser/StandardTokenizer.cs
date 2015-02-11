@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace JDunkerley.ExpressionParser
 {
@@ -22,12 +21,13 @@ namespace JDunkerley.ExpressionParser
         /// </summary>
         public const string OperatorCharactersConst = "+-/*^%‰=!<>|&?:$()";
         /// <summary>
-        /// Stan
+        /// Standard Set of Function Name Constants
+        /// Post First Character Allow Numeric As Well
         /// </summary>
-        public const string functionConst = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public const string FunctionCharactersConst = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        private readonly Dictionary<char, bool> _whiteSpaceLookUp;
-        private readonly Dictionary<char, bool> _operatorLookUp; 
+        private readonly IReadOnlyDictionary<char, bool> _whiteSpaceLookUp;
+        private readonly IReadOnlyDictionary<char, bool> _operatorLookUp; 
 
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace JDunkerley.ExpressionParser
         public StandardTokenizer(
             string numericChars = NumericCharactersConst,
             string operatorChars = OperatorCharactersConst,
-            string funcationChars = functionConst,
+            string funcationChars = FunctionCharactersConst,
             string whiteSpaceChars = WhiteSpaceCharactersConst)
         {
             _whiteSpaceLookUp = whiteSpaceChars.CreateCharacterLookUp();
