@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using JDunkerley.Parser;
 
 namespace ParserTests
 {
     /// <summary>
     /// Component Test Class : Only Type and Text Implemented
     /// </summary>
-    public class Component : JDunkerley.Parser.IComponent
+    public class Component : IComponent
     {
-        private readonly JDunkerley.Parser.ComponentType _type;
+        private readonly ComponentType _type;
         private readonly string _text;
 
-        public Component(JDunkerley.Parser.ComponentType Type, string Text)
+        public Component(ComponentType Type, string Text)
         {
             this._type = Type;
             this._text = Text;
         }
 
-        public JDunkerley.Parser.ComponentType Type
+        public ComponentType Type
         {
             get { return this._type; }
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JDunkerley.Parser;
 using JDunkerley.Parser.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -62,8 +61,8 @@ namespace ParserTests
             var results = comps.MergeBrackets();
             Assert.IsTrue(results.Count == 1);
             Assert.IsTrue(results[0].Type == ComponentType.Bracket);
-            Assert.IsTrue(results[0] is JDunkerley.Parser.IExpression);
-            var expr = (JDunkerley.Parser.IExpression)results[0];
+            Assert.IsTrue(results[0] is IExpression);
+            var expr = (IExpression)results[0];
             Assert.IsTrue(expr.Params.Length == 3);
             
             expr.Params[0].CheckNumberComp(4, 1e-10, "(4*(1+3))");
@@ -95,8 +94,8 @@ namespace ParserTests
             var results = comps.MergeBrackets();
             Assert.IsTrue(results.Count == 1);
             Assert.IsTrue(results[0].Type == ComponentType.Bracket);
-            Assert.IsTrue(results[0] is JDunkerley.Parser.IExpression);
-            var expr = (JDunkerley.Parser.IExpression)results[0];
+            Assert.IsTrue(results[0] is IExpression);
+            var expr = (IExpression)results[0];
             Assert.IsTrue(expr.Params.Length == 3);
 
             expr.Params[0].CheckBinaryExpresion(ComponentType.Bracket, 1, ComponentType.Binary, "*", 2, "(1*2,3-1)");

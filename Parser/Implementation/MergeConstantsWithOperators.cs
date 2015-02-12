@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using JDunkerley.Parser.Components;
 
 namespace JDunkerley.Parser.Implementation
 {
@@ -37,10 +35,10 @@ namespace JDunkerley.Parser.Implementation
                 Next = (ii + jj) < Comps.Count ? Comps[ii + jj] : null;
             }
 
-            if (Next is Components.NumericalValue)
+            if (Next is NumericalValue)
             {
                 // Create A New Negative Value And Then Skip (jj + 1)
-                output.Add(new Components.NumericalValue(-((Components.NumericalValue)Next).Value));
+                output.Add(new NumericalValue(-((NumericalValue)Next).Value));
                 ii += jj + 1;
                 return;
             }
@@ -51,14 +49,14 @@ namespace JDunkerley.Parser.Implementation
 
         private static bool _BackUnaryOpeartorPct(IComponent Cur, IComponent Prev, ref int ii, List<IComponent> output)
         {
-            if (!(Prev is Components.NumericalValue))
+            if (!(Prev is NumericalValue))
                 return false;
 
-            double val = ((Components.NumericalValue)Prev).Value;
+            double val = ((NumericalValue)Prev).Value;
             if (Cur.Text == "%") val = val / 100.0;
             else if (Cur.Text == "‰") val = val / 1000.0;
 
-            output[output.Count - 1] = new Components.NumericalValue(val);
+            output[output.Count - 1] = new NumericalValue(val);
             ii++;
             return true;
         }

@@ -17,8 +17,10 @@ namespace JDunkerley.ExpressionParser
         /// <param name="text"></param>
         public Token(TokenType tokenType, string text)
         {
-            if (text == null) 
+            if (text == null)
+            {
                 throw new ArgumentNullException("text", "text cannot be NULL");
+            }
 
             _tokenType = tokenType;
             _text = text;

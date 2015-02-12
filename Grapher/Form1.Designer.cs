@@ -1,11 +1,15 @@
-﻿namespace Grapher
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace Grapher
 {
     partial class Form1
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -245,13 +249,13 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
-        private System.Windows.Forms.TextBox txtExpression;
-        private System.Windows.Forms.TextBox txtXFrom;
-        private System.Windows.Forms.TextBox txtXTo;
-        private System.Windows.Forms.Label lblRawParsed;
-        private System.Windows.Forms.Label lblParsed;
-        private System.Windows.Forms.GroupBox grpVariables;
+        private Chart chart;
+        private TextBox txtExpression;
+        private TextBox txtXFrom;
+        private TextBox txtXTo;
+        private Label lblRawParsed;
+        private Label lblParsed;
+        private GroupBox grpVariables;
 
     }
 }

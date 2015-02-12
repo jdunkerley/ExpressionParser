@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using JDunkerley.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -30,14 +29,14 @@ namespace ParserTests
         [TestMethod()]
         public void PositiveIntegerTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
                 double n = Math.Round((rand.NextDouble()) * 10000000000, 0);
                 string ntxt = n.ToString("0");
 
-                var comps = JDunkerley.Parser.Parser.GetRawComponents(ntxt);
+                var comps = Parser.GetRawComponents(ntxt);
                 Assert.IsTrue(comps.Count == 1, "Number of components incorrect for " + ntxt);
                 comps[0].CheckNumberComp(n, 1e-8, ntxt);
             }
@@ -49,7 +48,7 @@ namespace ParserTests
         [TestMethod()]
         public void PositiveDoubleTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
@@ -70,7 +69,7 @@ namespace ParserTests
         [TestMethod()]
         public void PositiveDoublePctTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
@@ -93,7 +92,7 @@ namespace ParserTests
         [TestMethod()]
         public void PositiveDoubleMileTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
@@ -117,7 +116,7 @@ namespace ParserTests
         [TestMethod()]
         public void NegativeIntegerTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
@@ -137,7 +136,7 @@ namespace ParserTests
         [TestMethod()]
         public void NegativeDoubleTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
@@ -159,7 +158,7 @@ namespace ParserTests
         [TestMethod()]
         public void NegativeDoublePctTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {
@@ -183,7 +182,7 @@ namespace ParserTests
         [TestMethod()]
         public void NegativeDoubleMileTests()
         {
-            var rand = new System.Random();
+            var rand = new Random();
 
             for (int i = 0; i < TestIterations; i++)
             {

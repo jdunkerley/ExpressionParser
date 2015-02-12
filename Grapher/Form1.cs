@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using JDunkerley.Parser;
 
 namespace Grapher
@@ -234,7 +235,7 @@ namespace Grapher
         private void EvaluateOneSeries(double step, string Name)
         {
             var series = this.chart.Series.Add(Name);
-            series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series.ChartType = SeriesChartType.FastLine;
             series.ChartArea = this.chart.ChartAreas[0].Name;
 
             this.currX = this.XMin;

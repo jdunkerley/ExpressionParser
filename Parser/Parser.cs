@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using JDunkerley.Parser.Components;
 using JDunkerley.Parser.Implementation;
 
 namespace JDunkerley.Parser
@@ -27,7 +29,7 @@ namespace JDunkerley.Parser
         {
             IComponent comp = GetComponentTree(Expression);
             if (comp == null) return null;
-            if (!comp.Constant) throw new System.InvalidOperationException("Expression Contains Variables");
+            if (!comp.Constant) throw new InvalidOperationException("Expression Contains Variables");
             return comp.Evaluate(null);
         }
 
@@ -131,7 +133,7 @@ namespace JDunkerley.Parser
             if (EvaluateConstants)
             {
                 if (cmp.Constant)
-                    return new Components.EvaluatedBlock(cmp.Evaluate(null));
+                    return new EvaluatedBlock(cmp.Evaluate(null));
                 cmp.EvaluateConstants();
             }
 
@@ -139,23 +141,23 @@ namespace JDunkerley.Parser
         }
         #endregion
         #region Function Dictionary
-        private static Dictionary<string, System.Reflection.MethodInfo> functionRegister = new Dictionary<string, System.Reflection.MethodInfo>();
+        private static Dictionary<string, MethodInfo> functionRegister = new Dictionary<string, MethodInfo>();
 
         /// <summary>
         /// Register all the System.Math functions
         /// </summary>
         public static void RegisterMathFunctions()
         {
-            Type mathType = typeof(System.Math);
-            foreach (var method in mathType.GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static))
+            Type mathType = typeof(Math);
+            foreach (var method in mathType.GetMethods(BindingFlags.Public | BindingFlags.Static))
             {
                 var paramSet = method.GetParameters();
                 if (paramSet.Where(pt => pt.ParameterType != typeof(double)).Count() > 0) continue;
                 SetFunction(method.Name, method);
             }
 
-            SetFunction("Round", typeof(Parser).GetMethod("FuncRound", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public));
-            SetFunction("If", typeof(Parser).GetMethod("FuncIf", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public));
+            SetFunction("Round", typeof(Parser).GetMethod("FuncRound", BindingFlags.Static | BindingFlags.Public));
+            SetFunction("If", typeof(Parser).GetMethod("FuncIf", BindingFlags.Static | BindingFlags.Public));
         }
 
         /// <summary>
@@ -186,7 +188,7 @@ namespace JDunkerley.Parser
         /// </summary>
         /// <param name="Name"></param>
         /// <returns></returns>
-        public static System.Reflection.MethodInfo GetFunctions(string Name)
+        public static MethodInfo GetFunctions(string Name)
         {
             if (Name == null) return null;
             Name = Name.ToUpper().Trim();
@@ -198,7 +200,7 @@ namespace JDunkerley.Parser
         /// </summary>
         /// <param name="Name"></param>
         /// <param name="Function"></param>
-        public static void SetFunction(string Name, System.Reflection.MethodInfo Function)
+        public static void SetFunction(string Name, MethodInfo Function)
         {
             Name = Name.ToUpper().Trim();
             functionRegister[Name] = Function;

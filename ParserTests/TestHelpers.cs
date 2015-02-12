@@ -1,7 +1,6 @@
-﻿using JDunkerley.Parser;
+﻿using System;
+using JDunkerley.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using JDunkerley.Parser.Components;
 
 namespace ParserTests
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using JDunkerley.Parser.Components;
 
 namespace JDunkerley.Parser.Implementation
 {
@@ -100,7 +100,7 @@ namespace JDunkerley.Parser.Implementation
             double val;
             if (!double.TryParse(txt, out val))
                 throw new FormatException("Unable to Parse Value:" + txt);
-            components.Add(new Components.NumericalValue(val));
+            components.Add(new NumericalValue(val));
 
             return len;
         }
@@ -115,13 +115,13 @@ namespace JDunkerley.Parser.Implementation
 
             string varName = input.Substring(idx, len);
             if (varName.ToLower() == "pi")
-                components.Add(new Components.NumericalValue(Math.PI));
+                components.Add(new NumericalValue(Math.PI));
             else if (varName.ToLower() == "e")
-                components.Add(new Components.NumericalValue(Math.E));
+                components.Add(new NumericalValue(Math.E));
             else if (varName.ToLower() == "true")
-                components.Add(new Components.EvaluatedBlock(true));
+                components.Add(new EvaluatedBlock(true));
             else if (varName.ToLower() == "false")
-                components.Add(new Components.EvaluatedBlock(false));
+                components.Add(new EvaluatedBlock(false));
             else
                 components.Add(new Component(ComponentType.Variable, varName));
             return len;
@@ -180,7 +180,7 @@ namespace JDunkerley.Parser.Implementation
                     continue;   
                 }
 
-                components.Add(new Components.TextValue(input.Substring(idx + 1, end - idx - 1).Replace("\"\"","\"")));
+                components.Add(new TextValue(input.Substring(idx + 1, end - idx - 1).Replace("\"\"","\"")));
                 return end - idx + 1;
             }
 

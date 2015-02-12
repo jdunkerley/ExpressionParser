@@ -1,5 +1,4 @@
-﻿using System;
-using JDunkerley.Parser;
+﻿using JDunkerley.Parser;
 using JDunkerley.Parser.Components;
 
 namespace ParserTests

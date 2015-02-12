@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace JDunkerley.Parser.Components
 {
@@ -12,7 +13,7 @@ namespace JDunkerley.Parser.Components
         /// <summary>
         /// Make A Function Component
         /// </summary>
-        public Function(string FnName, System.Reflection.MethodInfo method, params IComponent[] Params)
+        public Function(string FnName, MethodInfo method, params IComponent[] Params)
         {
             this.FnName = FnName;
             this.Method = method;
@@ -27,7 +28,7 @@ namespace JDunkerley.Parser.Components
         /// <summary>
         /// Method
         /// </summary>
-        public System.Reflection.MethodInfo Method { get; private set; }
+        public MethodInfo Method { get; private set; }
 
         /// <summary>
         /// Parameters

@@ -1,5 +1,3 @@
-using System;
-
 namespace JDunkerley.Parser
 {
     /// <summary>

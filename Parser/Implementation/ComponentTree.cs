@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using JDunkerley.Parser.Components;
 
 namespace JDunkerley.Parser.Implementation
 {
@@ -50,7 +49,7 @@ namespace JDunkerley.Parser.Implementation
                 case ComponentType.Value:
                     return pivot;
                 case ComponentType.Variable:
-                    return new Components.Variable(pivot.Text);
+                    return new Variable(pivot.Text);
                 case ComponentType.BracketOpen:
                 case ComponentType.BracketClose:
                 case ComponentType.Comma:
@@ -68,14 +67,14 @@ namespace JDunkerley.Parser.Implementation
         {
             var input = components.MakeComponentTree(start, count - 1);
             if (input == null) return null;
-            return new Components.OperatorUnary(input, components[start + count - 1].Text);
+            return new OperatorUnary(input, components[start + count - 1].Text);
         }
 
         private static IComponent MakeUnary(this IList<IComponent> components, int start, int count)
         {
             var input = components.MakeComponentTree(start + 1, count - 1);
             if (input == null) return null;
-            return new Components.OperatorUnary(components[start].Text, input);
+            return new OperatorUnary(components[start].Text, input);
         }
 
         private static IComponent MakeBinary(this IList<IComponent> components, int start, int count, int idx)
@@ -86,7 +85,7 @@ namespace JDunkerley.Parser.Implementation
             var rightin = components.MakeComponentTree(idx + 1, count - (idx - start) - 1);
             if (rightin == null) return null;
 
-            return new Components.OperatorBinary(leftin, components[idx].Text, rightin);
+            return new OperatorBinary(leftin, components[idx].Text, rightin);
         }
 
         private static IComponent MakeFunction(this IComponent component)
@@ -108,9 +107,9 @@ namespace JDunkerley.Parser.Implementation
             }
 
             if (component.Type == ComponentType.Bracket)
-                return new Components.Function("(", null, comps.ToArray());
+                return new Function("(", null, comps.ToArray());
             else
-                return new Components.Function(expr.FunctionName, Parser.GetFunctions(expr.FunctionName), comps.ToArray());
+                return new Function(expr.FunctionName, Parser.GetFunctions(expr.FunctionName), comps.ToArray());
         }
     }
 }

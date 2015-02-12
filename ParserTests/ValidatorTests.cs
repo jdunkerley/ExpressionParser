@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JDunkerley.Parser;
 using JDunkerley.Parser.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
