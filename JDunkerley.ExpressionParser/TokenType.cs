@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JDunkerley.ExpressionParser
+﻿namespace JDunkerley.ExpressionParser
 {
     /// <summary>
     /// Type of Parsed Tokens

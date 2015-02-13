@@ -35,7 +35,7 @@ namespace JDunkerley.ExpressionParser
         /// <returns></returns>
         internal static IReadOnlyDictionary<char, bool> CreateCharacterLookUp(this string charsString)
         {
-            var dict = charsString.ToCharArray().ToDictionary(c => c, c => true);
+            var dict = charsString.ToCharArray().Distinct().ToDictionary(c => c, c => true);
             return new ReadOnlyDictionary<char, bool>(dict);
         }
     }
