@@ -14,6 +14,6 @@ namespace JDunkerley.ExpressionParser
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        IEnumerable<IToken> Tokenize(string expression);
+        IReadOnlyList<IToken> Tokenize(string expression);
     }
 }
